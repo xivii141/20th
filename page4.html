@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENTII BOGRAAA 😂</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #d4f7d4, #f0e6d4);
+      color: #333;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      /* Ensure scrolling is enabled */
+    }
+
+    /* Container for Content */
+    .container {
+      position: relative;
+      padding: 50px;
+      z-index: 1;
+    }
+
+    /* Heading */
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem; /* Smaller title */
+      color: #8b4513;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    /* Cow Emoji */
+    .cow-emoji {
+      font-size: 5rem;
+      cursor: pointer;
+      animation: float 4s ease-in-out infinite;
+    }
+    .cow-emoji:hover {
+      transform: scale(1.2);
+    }
+
+    /* Instruction Text */
+    .instruction {
+      font-size: 1.2rem;
+      color: #8b4513;
+      margin-top: 10px;
+    }
+
+    /* Funny Message */
+    #funnyMessage {
+      font-size: 1.5rem;
+      color: #8b4513;
+      font-weight: bold;
+      margin-top: 20px;
+      display: none; /* Hidden by default */
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes moo {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Content -->
+  <div class="container">
+    <h1>ENTII BOGRAAA 😂</h1>
+
+    <!-- Cow Emoji -->
+    <div class="cow-emoji" onclick="showFunnyMessage()">🐄</div>
+
+    <!-- Instruction Text -->
+    <div class="instruction">
+      Click here, surprise for you only you!
+    </div>
+
+    <!-- Funny Message -->
+    <div id="funnyMessage">
+      Moooooo! 🐄 Enti a7la bogra f denya! 🎉
+    </div>
+
+    <!-- Additional Content -->
+    <div style="margin-top: 50px;">
+      <h2>Why Cows Are Awesome 🐮</h2>
+      <p>
+        Cows are not just farm animals—they're hilarious, adorable, and full of surprises! Here are some fun facts about cows:
+      </p>
+      <ul style="list-style-type: none; padding: 0;">
+        <li>🐄 Cows have best friends and get stressed when separated.</li>
+        <li>🐄 They can smell something up to 6 miles away!</li>
+        <li>🐄 Cows spend about 8 hours a day eating. Mood.</li>
+      </ul>
+    </div>
+
+    <!-- Secret Code Section -->
+    <div class="secret-code" style="margin-top: 50px;">
+      <input type="text" id="codeInput" placeholder="Enter the secret code">
+      <button onclick="checkCode()">Go to Next Page</button>
+      <p id="message" style="color: #8b4513; font-weight: bold;"></p>
+    </div>
+  </div>
+
+  <!-- JavaScript for Cow Emoji and Secret Code -->
+  <script>
+    // Show funny message when cow emoji is clicked
+    function showFunnyMessage() {
+      const funnyMessage = document.getElementById('funnyMessage');
+      funnyMessage.style.display = 'block';
+      funnyMessage.style.animation = 'moo 0.5s ease-in-out';
+    }
+
+    // Secret Code Functionality
+    function checkCode() {
+      const code = document.getElementById('codeInput').value;
+      const message = document.getElementById('message');
+
+      if (code === '110605') {
+        // Redirect to the next page (replace 'page5.html' with the actual file name)
+        window.location.href = 'page5.html';
+      } else {
+        message.textContent = 'Oops, try again!';
+      }
+    }
+  </script>
+</body>
+</html>
