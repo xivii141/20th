@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Für dich, Yamouna 🌸</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: url('https://images.unsplash.com/photo-1528164344700-75e0fc8a2ad2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      /* Remove overflow: hidden to enable scrolling */
+    }
+
+    /* Overlay for Better Text Visibility */
+    .overlay {
+      background: rgba(255, 255, 255, 0.7);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    /* Container for Content */
+    .container {
+      position: relative;
+      padding: 50px;
+      z-index: 1;
+    }
+
+    /* Heading */
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 4rem;
+      color: #e91e63;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    /* Paragraph */
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 20px auto;
+      animation: slideUp 2s ease-in-out;
+    }
+
+    /* Emojis */
+    .emoji {
+      position: absolute;
+      font-size: 2rem;
+      color: #e91e63;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Secret Code Input */
+    .secret-code {
+      margin-top: 20px;
+    }
+    .secret-code input {
+      padding: 10px;
+      font-size: 1rem;
+      border: 2px solid #e91e63;
+      border-radius: 5px;
+      outline: none;
+    }
+    .secret-code button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #e91e63;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .secret-code button:hover {
+      background-color: #c2185b;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      0% { transform: translateY(50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Overlay for Better Text Visibility -->
+  <div class="overlay"></div>
+
+  <!-- Floating Emojis -->
+  <div class="emoji" style="top: 10%; left: 5%;">🌸</div>
+  <div class="emoji" style="top: 20%; right: 10%;">🍕</div>
+  <div class="emoji" style="top: 50%; left: 15%;">🎉</div>
+  <div class="emoji" style="top: 70%; right: 5%;">🇩🇪</div>
+
+  <!-- Content -->
+  <div class="container">
+    <h1>Für dich, Yamouna 🌸</h1>
+    <p>
+      Yamouna, du bist so wichtig für mich. Deine Freundschaft bedeutet mir mehr, als Worte sagen können. Ich bin so dankbar, dich in meinem Leben zu haben.
+    </p>
+    <p>
+      Du bist wie die Sonne Italiens – warm, strahlend und voller Leben. Und wie die Berge Deutschlands – stark, beständig und immer da. 💖
+    </p>
+
+    <!-- Secret Code Section -->
+    <div class="secret-code">
+      <input type="text" id="codeInput" placeholder="Enter the secret code">
+      <button onclick="checkCode()">Go to Next Page</button>
+      <p id="message" style="color: #e91e63; font-weight: bold;"></p>
+    </div>
+  </div>
+
+  <!-- JavaScript for Secret Code -->
+  <script>
+    function checkCode() {
+      const code = document.getElementById('codeInput').value;
+      const message = document.getElementById('message');
+
+      if (code === '110605') {
+        // Redirect to the next page (replace 'page3.html' with the actual file name)
+        window.location.href = 'page3.html';
+      } else {
+        message.textContent = 'Oops, try again!';
+      }
+    }
+  </script>
+</body>
+</html>
