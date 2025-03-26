@@ -91,6 +91,44 @@
       animation: float 4s ease-in-out infinite;
     }
 
+    /* Secret Code Section */
+    .secret-code {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: rgba(255,255,255,0.3);
+      border-radius: 10px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .secret-code input {
+      padding: 10px;
+      font-size: 1rem;
+      border: 2px solid white;
+      border-radius: 5px;
+      margin-right: 10px;
+      background-color: rgba(255,255,255,0.7);
+    }
+    .secret-code button {
+      padding: 10px 20px;
+      background-color: white;
+      color: #e91e63;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+    }
+    .secret-code button:hover {
+      background-color: #f8f8f8;
+    }
+    #code-message {
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 20px;
+      color: white;
+    }
+
     /* Keyframe Animations */
     @keyframes fadeIn {
       0% { opacity: 0; }
@@ -119,21 +157,30 @@
       <div class="broken-heart">💔</div>
       <div class="click-here">Click here...</div>
     </div>
+    
+    <!-- Secret Code Section -->
+    <div class="secret-code">
+      <h3>Enter the secret code to continue:</h3>
+      <input type="password" id="secret-code-input" placeholder="Enter code">
+      <button onclick="checkSecretCode()">Submit</button>
+      <div id="code-message"></div>
+    </div>
   </div>
 
   <!-- Happy Mode -->
   <div class="happy-mode" id="happyMode">
-    <h1>Don’t Worry, Mzlt Nhebk Anyway 🥹 <span class="happy-emoji" style="top: 10%; left: 10%;">😘</span><span class="happy-emoji" style="top: 20%; right: 10%;">❤️‍🩹</span><span class="happy-emoji" style="top: 50%; left: 15%;">❤️‍🩹</span><span class="happy-emoji" style="top: 70%; right: 5%;">❤️‍🩹</span></h1>
+    <h1>Don't Worry, Mzlt Nhebk Anyway 🥹 <span class="happy-emoji" style="top: 10%; left: 10%;">😘</span><span class="happy-emoji" style="top: 20%; right: 10%;">❤️‍🩹</span><span class="happy-emoji" style="top: 50%; left: 15%;">❤️‍🩹</span><span class="happy-emoji" style="top: 70%; right: 5%;">❤️‍🩹</span></h1>
     <p>
-      Yamouna, no matter what happens, I still love you. Let’s work through this together. ❤️
+      Yamouna, no matter what happens, I still love you. Let's work through this together. ❤️
     </p>
-  </div>
-
-  <!-- Secret Code Section -->
-  <div class="secret-code">
-    <input type="text" id="codeInput" placeholder="Enter the secret code">
-    <button onclick="checkCode()">Go to Next Page</button>
-    <p id="message" style="color: white; font-weight: bold;"></p>
+    
+    <!-- Secret Code Section (also in happy mode) -->
+    <div class="secret-code">
+      <h3>Enter the secret code to continue:</h3>
+      <input type="password" id="happy-secret-code-input" placeholder="Enter code">
+      <button onclick="checkSecretCodeHappy()">Submit</button>
+      <div id="happy-code-message"></div>
+    </div>
   </div>
 
   <!-- JavaScript for Switching Modes and Secret Code -->
@@ -144,17 +191,93 @@
       document.getElementById('happyMode').style.display = 'flex';
     }
 
-    // Function for secret code
-    function checkCode() {
-      const code = document.getElementById('codeInput').value;
-      const message = document.getElementById('message');
-
-      if (code === '110605') {
-        // Redirect to the next page (replace 'page10.html' with the actual file name)
-        window.location.href = 'page10.html';
+    // Function for secret code in angry mode
+    function checkSecretCode() {
+      const input = document.getElementById('secret-code-input');
+      const message = document.getElementById('code-message');
+      
+      if (input.value === '110605') {
+        message.textContent = 'Correct code! Redirecting...';
+        message.style.color = '#4caf50';
+        
+        // Smart redirect that works both locally and on GitHub
+        const nextPage = 'page10.html'; // Change this to your next page filename
+        
+        // First try to find the page in current directory
+        fetch(nextPage)
+          .then(response => {
+            if (response.ok) {
+              window.location.href = nextPage;
+            } else {
+              // If not found, try with .html extension variations
+              tryVariations();
+            }
+          })
+          .catch(() => {
+            tryVariations();
+          });
       } else {
-        message.textContent = 'Oops, try again!';
+        message.textContent = 'Incorrect code, try again!';
+        message.style.color = '#f44336';
+        input.value = '';
       }
+    }
+
+    // Function for secret code in happy mode
+    function checkSecretCodeHappy() {
+      const input = document.getElementById('happy-secret-code-input');
+      const message = document.getElementById('happy-code-message');
+      
+      if (input.value === '110605') {
+        message.textContent = 'Correct code! Redirecting...';
+        message.style.color = '#4caf50';
+        
+        // Smart redirect that works both locally and on GitHub
+        const nextPage = 'page10.html'; // Change this to your next page filename
+        
+        // First try to find the page in current directory
+        fetch(nextPage)
+          .then(response => {
+            if (response.ok) {
+              window.location.href = nextPage;
+            } else {
+              // If not found, try with .html extension variations
+              tryVariations();
+            }
+          })
+          .catch(() => {
+            tryVariations();
+          });
+      } else {
+        message.textContent = 'Incorrect code, try again!';
+        message.style.color = '#f44336';
+        input.value = '';
+      }
+    }
+
+    function tryVariations() {
+      const variations = [
+        'page10.html',
+        'Page10.html',
+        'PAGE10.HTML',
+        '/page10.html',
+        './page10.html'
+      ];
+      
+      let found = false;
+      
+      // Try each variation until one works
+      variations.forEach(variation => {
+        if (!found) {
+          fetch(variation)
+            .then(response => {
+              if (response.ok) {
+                window.location.href = variation;
+                found = true;
+              }
+            });
+        }
+      });
     }
   </script>
 </body>
