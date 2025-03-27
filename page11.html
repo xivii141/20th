@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Akher Haja wlh 😂🫶🫶</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(45deg, #ffcce6, #ffb3d9, #ff99cc, #ff80bf);
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        h1 {
+            color: #ff0066;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 0;
+            animation: float 3s ease-in-out infinite;
+        }
+        .heart {
+            font-size: 100px;
+            cursor: pointer;
+            margin: 20px;
+            transition: all 0.3s;
+            animation: pulse 1.5s infinite;
+            text-shadow: 0 0 10px rgba(255, 0, 102, 0.5);
+        }
+        .heart:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+        .click-hint {
+            color: #ff0066;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+            font-weight: bold;
+        }
+        .audio-container {
+            opacity: 0;
+            height: 0;
+            transition: all 0.5s ease;
+        }
+        .audio-container.show {
+            opacity: 1;
+            height: auto;
+            margin-top: 20px;
+        }
+        audio {
+            width: 250px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(255, 0, 102, 0.3);
+        }
+        .emoji-float {
+            position: absolute;
+            font-size: 30px;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Emojis (Dynamically Added) -->
+    <div id="floating-emojis"></div>
+
+    <h1>Akher Haja wlh 😂💖🌹</h1>
+    <div class="click-hint">Click the heart to listen! 👇</div>
+    
+    <!-- Heart Trigger -->
+    <div class="heart" onclick="playAudio()">❤️</div>
+    
+    <!-- Hidden Audio -->
+    <div class="audio-container" id="audio-container">
+        <audio id="audio" controls>
+            <source src="https://www.dropbox.com/scl/fi/ssdl9tqtbayx8il1dl057/Mon-enregistrement-2.mp3?rlkey=mdukcj17jxr7lk90mxl9s3ful&st=zs1iivcq&dl=1" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        // Play/pause audio and animate
+        function playAudio() {
+            const audio = document.getElementById('audio');
+            const container = document.getElementById('audio-container');
+            const heart = document.querySelector('.heart');
+            
+            container.classList.toggle('show');
+            
+            if (audio.paused) {
+                audio.play();
+                heart.innerHTML = '❤️🔥';
+                heart.style.animation = 'pulse 0.8s infinite, spin 2s linear infinite';
+                createEmojis();
+            } else {
+                audio.pause();
+                heart.innerHTML = '❤️';
+                heart.style.animation = 'pulse 1.5s infinite';
+            }
+        }
+
+        // Create floating emojis on play
+        function createEmojis() {
+            const emojis = ['🌹', '✨', '💖', '🎶', '🌸', '🫶'];
+            const container = document.getElementById('floating-emojis');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 15; i++) {
+                const emoji = document.createElement('div');
+                emoji.className = 'emoji-float';
+                emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = Math.random() * 100 + 'vw';
+                emoji.style.top = Math.random() * 100 + 'vh';
+                emoji.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                emoji.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
+                container.appendChild(emoji);
+            }
+        }
+    </script>
+</body>
+</html>
