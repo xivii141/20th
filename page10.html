@@ -83,6 +83,34 @@
       background-color: #7b3fb3;
     }
 
+    /* Secret Continue Button */
+    .continue-btn {
+      margin: 40px auto;
+      padding: 12px 30px;
+      background: linear-gradient(45deg, #ff6b8b, #ff8e53);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+    
+    .continue-btn.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .continue-btn:hover {
+      background: linear-gradient(45deg, #ff8e53, #ff6b8b);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
     /* Animations */
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -127,15 +155,44 @@
       <div class="option" onclick="alert('I knew you\'d say yes! 😘💖')">Yes</div>
       <div class="option" onclick="alert('OF COURSE YA ROUHI! 🥹💘')">Ofc promise ya rouhi</div>
     </div>
+
+    <!-- The New Continue Button -->
+    <button class="continue-btn" id="continueBtn">Continue to Your Surprise 🌹</button>
   </div>
 
-  <!-- Smooth Scrolling Script -->
   <script>
+    // Smooth page appearance
     document.body.style.opacity = 0;
     window.addEventListener('DOMContentLoaded', () => {
       document.body.style.transition = 'opacity 1s';
       document.body.style.opacity = 1;
     });
+
+    // Show continue button after slight delay and when scrolled
+    setTimeout(() => {
+      const continueBtn = document.getElementById('continueBtn');
+      
+      // Show button after 5 seconds
+      setTimeout(() => {
+        continueBtn.classList.add('visible');
+      }, 5000);
+      
+      // Also show when user scrolls to bottom
+      window.addEventListener('scroll', function() {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+          continueBtn.classList.add('visible');
+        }
+      });
+      
+      // Redirect to page 11 with fade out
+      continueBtn.addEventListener('click', function() {
+        document.body.style.opacity = 0;
+        document.body.style.transition = 'opacity 1s ease';
+        setTimeout(function() {
+          window.location.href = "page11.html";
+        }, 1000);
+      });
+    }, 1000);
   </script>
 </body>
 </html>
