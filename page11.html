@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akher Haja wlh 😂🫶🫶</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(45deg, #ffcce6, #ffb3d9, #ff99cc, #ff80bf);
+            text-align: center;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            overflow-x: hidden;
+            touch-action: manipulation;
+        }
+        
+        .content-wrapper {
+            width: 100%;
+            max-width: 95%;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #ff0066;
+            font-size: 1.8rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            margin: 10px 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .heart {
+            font-size: 60px;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: all 0.3s;
+            animation: pulse 1.5s infinite;
+            text-shadow: 0 0 8px rgba(255, 0, 102, 0.5);
+        }
+
+        .heart:hover {
+            transform: scale(1.15) rotate(8deg);
+        }
+
+        .click-hint {
+            color: #ff0066;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            opacity: 0.8;
+            font-weight: bold;
+        }
+
+        .audio-container {
+            opacity: 0;
+            height: 0;
+            width: 100%;
+            transition: all 0.4s ease;
+            margin-top: 10px;
+        }
+
+        .audio-container.show {
+            opacity: 1;
+            height: auto;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 280px;
+            border-radius: 25px;
+            box-shadow: 0 3px 10px rgba(255, 0, 102, 0.3);
+        }
+
+        .emoji-float {
+            position: fixed;
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 350px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            .heart {
+                font-size: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Emojis -->
+    <div id="floating-emojis"></div>
+
+    <div class="content-wrapper">
+        <h1>Akher Haja wlh 😂💖🌹</h1>
+        <div class="click-hint">Click the heart to listen! 👇</div>
+        
+        <div class="heart" onclick="playAudio()">❤️</div>
+        
+        <div class="audio-container" id="audio-container">
+            <audio id="audio" controls>
+                <source src="https://www.dropbox.com/scl/fi/ssdl9tqtbayx8il1dl057/Mon-enregistrement-2.mp3?rlkey=mdukcj17jxr7lk90mxl9s3ful&st=zs1iivcq&dl=1" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+
+    <script>
+        function playAudio() {
+            const audio = document.getElementById('audio');
+            const container = document.getElementById('audio-container');
+            const heart = document.querySelector('.heart');
+            
+            container.classList.toggle('show');
+            
+            if (audio.paused) {
+                audio.play();
+                heart.innerHTML = '❤️🔥';
+                heart.style.animation = 'pulse 0.8s infinite, spin 2s linear infinite';
+                createEmojis();
+            } else {
+                audio.pause();
+                heart.innerHTML = '❤️';
+                heart.style.animation = 'pulse 1.5s infinite';
+            }
+        }
+
+        function createEmojis() {
+            const emojis = ['🌹', '✨', '💖', '🎶', '🌸', '🫶'];
+            const container = document.getElementById('floating-emojis');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 8; i++) {
+                const emoji = document.createElement('div');
+                emoji.className = 'emoji-float';
+                emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = Math.random() * 100 + 'vw';
+                emoji.style.top = (Math.random() * 70 + 15) + 'vh';
+                emoji.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                emoji.style.transform = `scale(${Math.random() * 0.4 + 0.6})`;
+                container.appendChild(emoji);
+            }
+        }
+    </script>
+</body>
+</html>
