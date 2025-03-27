@@ -8,68 +8,93 @@
             background: linear-gradient(45deg, #ffcce6, #ffb3d9, #ff99cc, #ff80bf);
             text-align: center;
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
+        
+        .content-wrapper {
+            max-width: 600px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
         h1 {
             color: #ff0066;
-            font-size: 3rem;
+            font-size: 2.5rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            margin-bottom: 0;
+            margin-bottom: 10px;
             animation: float 3s ease-in-out infinite;
         }
+
         .heart {
-            font-size: 100px;
+            font-size: 80px;
             cursor: pointer;
-            margin: 20px;
+            margin: 15px 0;
             transition: all 0.3s;
             animation: pulse 1.5s infinite;
             text-shadow: 0 0 10px rgba(255, 0, 102, 0.5);
         }
+
         .heart:hover {
             transform: scale(1.2) rotate(10deg);
         }
+
         .click-hint {
             color: #ff0066;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
             opacity: 0.8;
             font-weight: bold;
         }
+
         .audio-container {
             opacity: 0;
             height: 0;
+            width: 100%;
             transition: all 0.5s ease;
+            margin-top: 15px;
         }
+
         .audio-container.show {
             opacity: 1;
             height: auto;
-            margin-top: 20px;
         }
+
         audio {
-            width: 250px;
+            width: 100%;
+            max-width: 300px;
             border-radius: 50px;
             box-shadow: 0 4px 15px rgba(255, 0, 102, 0.3);
         }
+
         .emoji-float {
-            position: absolute;
-            font-size: 30px;
+            position: fixed;
+            font-size: 24px;
             animation: float 6s ease-in-out infinite;
             opacity: 0.7;
+            z-index: -1;
         }
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
+
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
         }
+
         @keyframes spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -80,17 +105,19 @@
     <!-- Floating Emojis (Dynamically Added) -->
     <div id="floating-emojis"></div>
 
-    <h1>Akher Haja wlh 😂💖🌹</h1>
-    <div class="click-hint">Click the heart to listen! 👇</div>
-    
-    <!-- Heart Trigger -->
-    <div class="heart" onclick="playAudio()">❤️</div>
-    
-    <!-- Hidden Audio -->
-    <div class="audio-container" id="audio-container">
-        <audio id="audio" controls>
-            <source src="https://www.dropbox.com/scl/fi/ssdl9tqtbayx8il1dl057/Mon-enregistrement-2.mp3?rlkey=mdukcj17jxr7lk90mxl9s3ful&st=zs1iivcq&dl=1" type="audio/mpeg">
-        </audio>
+    <div class="content-wrapper">
+        <h1>Akher Haja wlh 😂💖🌹</h1>
+        <div class="click-hint">Click the heart to listen! 👇</div>
+        
+        <!-- Heart Trigger -->
+        <div class="heart" onclick="playAudio()">❤️</div>
+        
+        <!-- Hidden Audio -->
+        <div class="audio-container" id="audio-container">
+            <audio id="audio" controls>
+                <source src="https://www.dropbox.com/scl/fi/ssdl9tqtbayx8il1dl057/Mon-enregistrement-2.mp3?rlkey=mdukcj17jxr7lk90mxl9s3ful&st=zs1iivcq&dl=1" type="audio/mpeg">
+            </audio>
+        </div>
     </div>
 
     <script>
@@ -120,7 +147,7 @@
             const container = document.getElementById('floating-emojis');
             container.innerHTML = '';
             
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 12; i++) {
                 const emoji = document.createElement('div');
                 emoji.className = 'emoji-float';
                 emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
